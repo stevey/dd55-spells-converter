@@ -1,0 +1,17 @@
+{
+  "manifest_version": 3,
+  "name": "DD55 Spell Swapper",
+  "version": "0.1.0",
+  "description": "Points legacy (2014) spell links on D&D Beyond monster stat blocks at their 2024 versions.",
+  "content_scripts": [
+    {
+      "matches": ["*://www.dndbeyond.com/monsters/*"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    { "resources": ["spell-map.json"], "matches": ["*://www.dndbeyond.com/*"] }
+  ]
+}

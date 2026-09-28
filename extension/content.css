@@ -1,0 +1,15 @@
+.dd55-badge {
+  display: inline-block;
+  margin-left: 2px;
+  padding: 0 3px;
+  border-radius: 3px;
+  background: #6d4bb8;
+  color: #fff;
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.4;
+  vertical-align: super;
+  text-decoration: none;
+  cursor: help;
+}
