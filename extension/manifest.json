@@ -1,8 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "DD55 Spell Swapper",
+  "name": "Legacy Spell Updater for D&D Beyond",
+  "short_name": "Legacy Spell Updater",
   "version": "0.1.0",
-  "description": "Points legacy (2014) spell links on D&D Beyond monster stat blocks at their 2024 versions.",
+  "description": "Updates legacy (2014) spell links on D&D Beyond monster stat blocks to their 2024 (5.5e) versions.",
   "content_scripts": [
     {
       "matches": ["*://www.dndbeyond.com/monsters/*"],

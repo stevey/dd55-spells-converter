@@ -1,6 +1,6 @@
-# dd55-spells-converter
+# Legacy Spell Updater for D&D Beyond
 
-Chrome extension that points legacy (2014) spell links on D&D Beyond monster stat blocks at their
+A Chrome extension that points legacy (2014) spell links on D&D Beyond monster stat blocks at their
 2024 (5.5e) versions. It rewrites both the link and the hover tooltip, and adds a small **24** badge
 to each swapped spell. It also patches Beyond20's spell buttons so they use the 2024 spell.
 
@@ -25,3 +25,5 @@ node scripts/build-spell-map.mjs            # add --verbose to list spells with 
 This scrapes the public spell listing at https://www.dndbeyond.com/spells, taking about a minute
 at 1 request per second. It matches spells by slug. `scripts/aliases.json` handles names that
 differ between editions, e.g. `acid-arrow` → `melfs-acid-arrow` and `feeblemind` → `befuddlement`.
+
+_Unofficial fan tool. Not affiliated with D&D Beyond or Wizards of the Coast._
