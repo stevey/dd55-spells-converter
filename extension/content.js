@@ -18,7 +18,7 @@
     a.href = `/spells/${target}`;
     a.setAttribute('data-tooltip-href', `//www.dndbeyond.com/spells/${newId}-tooltip`);
 
-    const badge = document.createElement('sup');
+    const badge = document.createElement('span');
     badge.className = 'dd55-badge';
     badge.textContent = '24';
     badge.title = `Swapped from legacy spell #${oldId}`;

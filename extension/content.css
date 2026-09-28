@@ -5,11 +5,13 @@
   border-radius: 3px;
   background: #6d4bb8;
   color: #fff;
-  font-size: 9px;
+  font-size: 10px;
   font-style: normal;
   font-weight: 700;
   line-height: 1.4;
-  vertical-align: super;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
   text-decoration: none;
   cursor: help;
 }
