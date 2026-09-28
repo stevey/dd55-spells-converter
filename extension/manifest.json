@@ -4,6 +4,19 @@
   "short_name": "Legacy Spell Updater",
   "version": "0.1.0",
   "description": "Updates legacy (2014) spell links on D&D Beyond monster stat blocks to their 2024 (5.5e) versions.",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "Legacy Spell Updater",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
   "content_scripts": [
     {
       "matches": ["*://www.dndbeyond.com/monsters/*"],
