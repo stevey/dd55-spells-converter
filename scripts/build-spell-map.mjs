@@ -1,6 +1,6 @@
 // Scrapes the public D&D Beyond spell listing and writes extension/spell-map.json:
 // { "<legacyId>": "<newId>-<newSlug>" } for every legacy spell with a 2024 version.
-// Usage: node scripts/build-spell-map.mjs
+// Usage: node scripts/build-spell-map.mjs [--verbose]
 import { readFile, writeFile } from 'node:fs/promises';
 
 const BASE = 'https://www.dndbeyond.com/spells';
@@ -16,7 +16,7 @@ async function scrape(filter) {
   const found = new Map(); // id -> slug
   for (let page = 1; ; page++) {
     const res = await fetch(`${BASE}?${filter}&page=${page}`, {
-      headers: { 'User-Agent': 'dd55-spells-converter map builder (personal use)' },
+      headers: { 'User-Agent': 'Legacy Spell Updater map builder (+https://github.com/stevey/dd55-spells-converter)' },
     });
     if (!res.ok) throw new Error(`${filter} page ${page}: HTTP ${res.status}`);
     const html = await res.text();

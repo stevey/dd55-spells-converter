@@ -3,6 +3,15 @@
   const map = await fetch(chrome.runtime.getURL('spell-map.json')).then((r) => r.json());
   const ID_RE = /\/spells\/(\d+)(?:-|\/)/;
 
+  // Badges are always added; the popup's "Show 24 badge" setting just hides them with CSS.
+  function applySettings({ showBadge }) {
+    document.documentElement.classList.toggle('dd55-hide-badges', !showBadge);
+  }
+  chrome.storage.sync.get({ showBadge: true }).then(applySettings);
+  chrome.storage.onChanged.addListener((changes, area) => {
+    if (area === 'sync' && changes.showBadge) applySettings({ showBadge: changes.showBadge.newValue });
+  });
+
   function legacyId(a) {
     return (a.getAttribute('data-tooltip-href') || '').match(ID_RE)?.[1]
       ?? (a.getAttribute('href') || '').match(ID_RE)?.[1];
