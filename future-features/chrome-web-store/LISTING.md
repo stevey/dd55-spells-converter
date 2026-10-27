@@ -1,5 +1,8 @@
 # Chrome Web Store listing
 
+_Parked for later: the extension isn't on the store yet. Everything needed to submit it is in
+this folder._
+
 Copy-paste text and answers for the Chrome Web Store developer dashboard. The images in this
 folder are the right sizes for the store; `src/` has the HTML they were rendered from.
 
@@ -8,7 +11,7 @@ folder are the right sizes for the store; `src/` has the HTML they were rendered
 1. Register as a Chrome Web Store developer at
    https://chrome.google.com/webstore/devconsole (one-time US$5 fee).
 2. Bump `version` in `extension/manifest.json`. Every upload needs a higher version.
-3. Run `sh scripts/package.sh` and upload the zip it prints (in `dist/`).
+3. Run `sh future-features/chrome-web-store/package.sh` and upload the zip it prints (in `dist/`).
 4. Fill in the fields below, then submit for review.
 
 ## Store listing tab
@@ -51,8 +54,8 @@ Unofficial fan project. Not affiliated with or endorsed by D&D Beyond or Wizards
 | Field | File |
 | --- | --- |
 | Store icon (128×128) | `extension/icons/icon-128.png` |
-| Screenshots (1280×800) | `store/screenshot-1.png`, `store/screenshot-2.png` |
-| Small promo tile (440×280) | `store/promo-small.png` |
+| Screenshots (1280×800) | `screenshot-1.png`, `screenshot-2.png` (this folder) |
+| Small promo tile (440×280) | `promo-small.png` (this folder) |
 
 **Homepage / support URL:** https://github.com/stevey/dd55-spells-converter
 
@@ -74,4 +77,4 @@ Points legacy (2014) spell links in D&D Beyond monster stat blocks at their 2024
 Check all three certifications (no selling, no unrelated use, no creditworthiness use).
 
 **Privacy policy URL:**
-https://github.com/stevey/dd55-spells-converter/blob/main/PRIVACY.md
+https://github.com/stevey/dd55-spells-converter/blob/main/future-features/chrome-web-store/PRIVACY.md

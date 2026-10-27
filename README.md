@@ -33,7 +33,7 @@ Every feature can be turned off. See [Settings](#settings).
 
 ## Install
 
-The extension isn't on the Chrome Web Store yet, so you load it from this repo:
+Load the extension from this repo:
 
 1. Download this repo: **Code → Download ZIP** and unzip it, or `git clone` it.
 2. Open `chrome://extensions` and turn on **Developer mode** (top right).
@@ -51,7 +51,7 @@ Brave and Arc.
 
 Click the extension's toolbar icon to open its settings:
 
-![The settings popup with four switches](store/screenshot-2.png)
+![The settings popup with four switches](images/settings.png)
 
 | Setting | Default | What it does |
 | --- | --- | --- |
@@ -159,19 +159,6 @@ minutes, so a private repo stays far inside GitHub's free monthly minutes.
 
 After you merge one of these pull requests, pull it and reload the extension as in step 3 above.
 
-## Publishing to the Chrome Web Store
-
-Everything the store asks for is in [`store/`](store/LISTING.md): the description, permission
-justifications, privacy answers, and the screenshots and promo tile at the right sizes. To build
-the upload:
-
-```sh
-sh scripts/package.sh   # writes dist/legacy-spell-updater-<version>.zip
-```
-
-Bump `version` in `extension/manifest.json` before each upload. See
-[`store/LISTING.md`](store/LISTING.md) for the step-by-step.
-
 ## Troubleshooting
 
 - **No badges anywhere.** Make sure you're on a *legacy* monster. 2024 monsters already link to
@@ -198,8 +185,6 @@ extension/              the unpacked Chrome extension (load this folder)
 scripts/
   build-spell-map.mjs   regenerates extension/spell-map.json
   aliases.json          renamed spells: legacy slug → 2024 slug
-  package.sh            zips extension/ for the Chrome Web Store
-store/                  Chrome Web Store listing text and images
 .github/workflows/      monthly spell map update
 images/                 README screenshots
 ```
@@ -208,7 +193,7 @@ images/                 README screenshots
 
 The extension only runs on D&D Beyond's monster, encounter builder, encounter and combat tracker
 pages. It asks for one permission, `storage`, to save your settings. It sends no data anywhere,
-uses no analytics, and doesn't read your D&D Beyond account. See [PRIVACY.md](PRIVACY.md).
+uses no analytics, and doesn't read your D&D Beyond account.
 
 ## License
 
