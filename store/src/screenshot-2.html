@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="common.css">
+<style>
+  body { width: 1280px; height: 800px; display: flex; align-items: center; justify-content: center; gap: 72px; }
+  .copy { flex: 0 0 420px; }
+  h1 { margin: 0 0 20px; font-size: 44px; line-height: 1.1; }
+  ul { margin: 0; padding-left: 22px; font-size: 21px; line-height: 1.7; color: #4a4361; }
+  .popup {
+    width: 292px; height: 290px; border: 0; background: #fff;
+    border-radius: 10px; box-shadow: 0 18px 50px rgba(48, 24, 110, 0.25);
+    transform: scale(1.55); transform-origin: center; margin: 0 100px;
+  }
+</style>
+</head>
+<body>
+  <div class="copy">
+    <h1>Your choice of extras</h1>
+    <ul>
+      <li>Turn the whole extension on or off</li>
+      <li>Show or hide the <span class="badge">24</span> badge</li>
+      <li>Click a badge to open the 2014 spell</li>
+      <li>See how many spells were swapped</li>
+    </ul>
+  </div>
+  <iframe class="popup" src="../../extension/popup.html"></iframe>
+</body>
+</html>

@@ -1,6 +1,6 @@
 // Scrapes the public D&D Beyond spell listing and writes extension/spell-map.json:
 // { "<legacyId>": "<newId>-<newSlug>" } for every legacy spell with a 2024 version.
-// Usage: node scripts/build-spell-map.mjs [--verbose]
+// Usage: node scripts/build-spell-map.mjs [--verbose] [--force]
 import { readFile, writeFile } from 'node:fs/promises';
 
 const BASE = 'https://www.dndbeyond.com/spells';
@@ -50,7 +50,16 @@ for (const [id, slug] of [...legacy].sort((a, b) => a[0] - b[0])) {
   else unmapped.push(`${id}-${slug}`);
 }
 
-await writeFile(new URL('../extension/spell-map.json', import.meta.url), JSON.stringify(map, null, 2) + '\n');
 console.log(`2024 spells: ${newBySlug.size}, other spells: ${legacy.size}, mapped: ${Object.keys(map).length}`);
 console.log(`Other spells with no 2024 PHB version: ${unmapped.length}`);
 if (process.argv.includes('--verbose')) console.log(unmapped.join('\n'));
+
+// A big drop usually means D&D Beyond changed its markup or blocked the scrape, not that spells vanished.
+const MAP_FILE = new URL('../extension/spell-map.json', import.meta.url);
+const oldCount = Object.keys(JSON.parse(await readFile(MAP_FILE, 'utf8').catch(() => '{}'))).length;
+const newCount = Object.keys(map).length;
+if (newCount < oldCount * 0.9 && !process.argv.includes('--force')) {
+  console.error(`Not writing: mapped spells dropped from ${oldCount} to ${newCount}. Rerun with --force to write anyway.`);
+  process.exit(1);
+}
+await writeFile(MAP_FILE, JSON.stringify(map, null, 2) + '\n');

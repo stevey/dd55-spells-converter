@@ -29,6 +29,9 @@
       border-top: 1px solid #eee;
       cursor: pointer;
     }
+    label.sub { padding-left: 14px; }
+    label.disabled { opacity: 0.45; cursor: default; }
+    label.disabled input { cursor: default; }
     .hint { display: block; color: #777; font-size: 11px; }
     .badge {
       padding: 0 3px;
@@ -75,9 +78,24 @@
 <body>
   <h1><img src="icons/icon-48.png" alt="">Legacy Spell Updater</h1>
   <label>
+    <span>Update legacy spell links
+      <span class="hint">Point 2014 spells at their 2024 versions</span></span>
+    <input type="checkbox" data-setting="enabled">
+  </label>
+  <label>
     <span>Show <span class="badge">24</span> badge
       <span class="hint">Marks each spell link that was swapped</span></span>
-    <input type="checkbox" id="showBadge" checked>
+    <input type="checkbox" data-setting="showBadge" data-requires="enabled">
+  </label>
+  <label class="sub">
+    <span>Click badge for 2014 version
+      <span class="hint">The badge links to the original spell</span></span>
+    <input type="checkbox" data-setting="badgeLinksToLegacy" data-requires="enabled showBadge">
+  </label>
+  <label>
+    <span>Show count on toolbar icon
+      <span class="hint">Number of spells swapped on this page</span></span>
+    <input type="checkbox" data-setting="showCount" data-requires="enabled">
   </label>
   <footer id="info"></footer>
   <script src="popup.js"></script>

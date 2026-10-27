@@ -1,4 +1,6 @@
-.dd55-badge {
+/* Extra specificity so D&D Beyond's stat block link styles don't win. */
+.mon-stat-block a.dd55-badge,
+a.dd55-badge {
   display: inline-block;
   margin-left: 2px;
   padding: 0 3px;
@@ -16,6 +18,17 @@
   cursor: help;
 }
 
+.mon-stat-block a.dd55-badge[href],
+a.dd55-badge[href] {
+  cursor: pointer;
+}
+
+.mon-stat-block a.dd55-badge[href]:hover,
+a.dd55-badge[href]:hover {
+  background: #54379a;
+  color: #fff;
+}
+
 .dd55-hide-badges .dd55-badge {
-  display: none;
+  display: none !important;
 }

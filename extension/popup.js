@@ -1,13 +1,27 @@
 // Settings popup. Changes are picked up live by content.js via chrome.storage.onChanged.
-const DEFAULTS = { showBadge: true };
-const showBadge = document.getElementById('showBadge');
+const DEFAULTS = { enabled: true, showBadge: true, badgeLinksToLegacy: true, showCount: true };
+const inputs = [...document.querySelectorAll('input[data-setting]')];
+
+// Grey out settings whose parent setting is off (data-requires lists the parents).
+function refresh() {
+  for (const input of inputs) {
+    const parents = (input.dataset.requires || '').split(' ').filter(Boolean);
+    const off = parents.some((key) => !document.querySelector(`[data-setting="${key}"]`).checked);
+    input.disabled = off;
+    input.closest('label').classList.toggle('disabled', off);
+  }
+}
 
 chrome.storage.sync.get(DEFAULTS).then((settings) => {
-  showBadge.checked = settings.showBadge;
+  for (const input of inputs) input.checked = settings[input.dataset.setting];
+  refresh();
 });
-showBadge.addEventListener('change', () => {
-  chrome.storage.sync.set({ showBadge: showBadge.checked });
-});
+for (const input of inputs) {
+  input.addEventListener('change', () => {
+    chrome.storage.sync.set({ [input.dataset.setting]: input.checked });
+    refresh();
+  });
+}
 
 fetch(chrome.runtime.getURL('spell-map.json'))
   .then((r) => r.json())

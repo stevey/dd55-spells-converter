@@ -1,0 +1,41 @@
+# Rebuilds extension/spell-map.json once a month and opens a pull request if it changed.
+# Run it by hand from the Actions tab with "Run workflow".
+name: Update spell map
+
+on:
+  schedule:
+    - cron: '0 9 1 * *' # 09:00 UTC on the 1st of each month
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Fails (and GitHub emails you) if the map shrinks by more than 10%, which usually
+      # means D&D Beyond changed its page markup or blocked the request.
+      - name: Rebuild spell map
+        run: node scripts/build-spell-map.mjs --verbose
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: update-spell-map
+          delete-branch: true
+          commit-message: Update spell map
+          title: Update spell map
+          body: |
+            Monthly rebuild of `extension/spell-map.json` from the D&D Beyond spell listing.
+
+            After merging, reload the extension in `chrome://extensions` (and refresh open
+            D&D Beyond tabs) to pick up the new map.
